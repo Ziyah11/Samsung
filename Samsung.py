@@ -6,6 +6,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 
 lemmatizer = nltk.stem.WordNetLemmatizer()
 
