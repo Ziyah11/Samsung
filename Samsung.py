@@ -66,7 +66,7 @@ def get_response(user_input):
 
 
 
-greetings = ["Hey There.... I am a creation of Ehiz Danny Agba Coder.... How can I help",
+greetings = ["Hey There.... I am a creation of Ziyah Agba Coder.... How can I help",
             "Hi Human.... How can I help",
             'Twale baba nla, wetin dey happen nah',
             'How far Alaye, wetin happen'
@@ -99,8 +99,8 @@ def bot_response(user_input):
     return df['Answer'].iloc[most_similar_index]
 
 chatbot_greeting = [
-    "Hello there, welcome to Orpheus Bot. pls ejoy your usage",
-    "Hi user, This bot is created by oprheus, enjoy your usage",
+    "Hello there, welcome to Samsung Bot. pls ejoy your usage",
+    "Hi user, This bot is created by Ziyah, enjoy your usage",
     "Hi hi, How you dey my nigga",
     "Alaye mi, Abeg enjoy your usage",
     "Hey Hey, pls enjoy your usage"    
