@@ -6,11 +6,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
-# import spacy
+
 lemmatizer = nltk.stem.WordNetLemmatizer()
-# nltk.download('stopwords')
-# nltk.download('punkt')
-# nltk.download('wordnet')
+
 
 df = pd.read_csv('Samsung Dialog.txt', sep= ':', header= None)
 
@@ -26,18 +24,14 @@ df['Answer'] = sales[1].reset_index(drop = True)
 
 # Define a function for text preprocessing (including lemmatization)
 def preprocess_text(text):
-    # Identifies all sentences in the data
+   
     sentences = nltk.sent_tokenize(text)
 
-    # Tokenize and lemmatize each word in each sentence
+
     preprocessed_sentences = []
     for sentence in sentences:
         tokens = [lemmatizer.lemmatize(word.lower()) for word in nltk.word_tokenize(sentence) if word.isalnum()]
-        # Turns to basic root - each word in the tokenized word found in the tokenized sentence - if they are all alphanumeric
-        # The code above does the following:
-        # Identifies every word in the sentence
-        # Turns it to a lower case
-        # Lemmatizes it if the word is alphanumeric
+       
 
         preprocessed_sentence = ' '.join(tokens)
         preprocessed_sentences.append(preprocessed_sentence)
@@ -49,13 +43,11 @@ df['tokenized Questions'] = df['Questions'].apply(preprocess_text)
 
 corpus = df['tokenized Questions'].to_list()
 
-# Vectorize corpus
+
 tfidf_vectorizer = TfidfVectorizer()
 
 vectorised_corpus = tfidf_vectorizer.fit_transform(corpus)
-# TDIDF is a numerical statistic used to evaluate how important a word is to a document in a collection or corpus.
-# The TfidfVectorizer calculates the Tfidf values for each word in the corpus and uses them to create a matrix where each row represents a document and each column represents a word.
-# The cell values in the matrix correspond to the importance of each word in each document.
+
 
 
 def get_response(user_input):
@@ -70,7 +62,7 @@ def get_response(user_input):
     return df['Answer'].iloc[most_similar_index] # ... Retrieve the corresponding answer from the df DataFrame and return it as the chatbot's response
 
 
-# create greeting list
+
 greetings = ["Hey There.... I am a creation of Ehiz Danny Agba Coder.... How can I help",
             "Hi Human.... How can I help",
             'Twale baba nla, wetin dey happen nah',
@@ -85,19 +77,8 @@ farewell = ['Thanks....see you soon', 'Babye, See you soon', 'Bye... See you lat
 random_farewell = random.choice(farewell) # ---------------- Randomly select a farewell message from the list
 random_greetings = random.choice(greetings) # -------- Randomly select greeting message from the list
 
-# Test your chatbot
-# while True:
-#     user_input = input(f"You: ")
-#     if user_input.lower() in exits:
-#         print(f"\nChatbot: {random_farewell}!")
-#         break
-#     if user_input.lower() in ['hi', 'hello', 'hey', 'hi there']:
-#         print(f"\nChatbot: {random_greetings}!")
-#     else:
-#         response = get_response(user_input)
-#         print(f"\nChatbot: {response}")
 
-# --------------------- STREAMLIT IMPLEMENTATION  ------------
+
 st.markdown("<h1 style = 'text-align: center; color: #176B87'>SAMSUNG CUSTOMER CARE</h1>", unsafe_allow_html = True)
 st.markdown("<h6 style = 'text-align: center; top-margin: 0rem; color: #64CCC5'>BUILT BY Ziyah</h1>", unsafe_allow_html = True)
 
